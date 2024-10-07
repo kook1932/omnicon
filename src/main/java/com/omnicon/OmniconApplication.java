@@ -1,0 +1,13 @@
+package com.omnicon;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class OmniconApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(OmniconApplication.class, args);
+	}
+
+}
