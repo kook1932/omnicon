@@ -11,10 +11,9 @@ import java.util.Set;
 
 @Getter
 public class Video {
-	private String id;
+	private Long id;
 	private String youtubeVideoId;
 	private String title;
-	private String description;
 	private LocalDateTime publishedAt;
 	private String thumbnailUrl;
 	private Integer duration;
@@ -23,7 +22,7 @@ public class Video {
 	private Summary summary;
 
 	// 생성자
-	public Video(String id, String youtubeVideoId, String title) {
+	public Video(Long id, String youtubeVideoId, String title) {
 		this.id = id;
 		this.youtubeVideoId = youtubeVideoId;
 		this.title = title;

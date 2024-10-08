@@ -29,7 +29,18 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok'
+
+	// MapStruct
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
+	annotationProcessor(
+			'org.projectlombok:lombok',
+			'org.projectlombok:lombok-mapstruct-binding:0.1.0'
+	)
+
+	// Jsoup
+	implementation 'org.jsoup:jsoup:1.14.3'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

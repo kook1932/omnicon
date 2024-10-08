@@ -1,36 +1,35 @@
 package com.omnicon.infrastructure.video;
 
 import com.omnicon.domain.video.Video;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.omnicon.infrastructure.summary.SummaryEntity;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "video")
+@Entity
 public class VideoEntity {
 
 	@Id
-	@Column(columnDefinition = "UUID")
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String videoToken;
 
 	private String youtubeVideoId;
 	private String title;
-
-	@Column(columnDefinition = "TEXT")
-	private String description;
 
 	private LocalDateTime publishedAt;
 	private String thumbnailUrl;
 	private Integer duration;
 
+	@OneToOne(mappedBy = "video", cascade = CascadeType.ALL)
+	private SummaryEntity summary;
+
 	// 연관 관계 매핑
 	// ...
-
-	// 기본 생성자
-	protected VideoEntity() {}
 
 	// 엔티티 생성 메서드
 	public static VideoEntity fromDomain(Video video) {
