@@ -8,8 +8,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class YtPlayerExtractorImplTest {
 
 	private YtPlayerExtractorImpl extractor = new YtPlayerExtractorImpl(new ObjectMapper(), new RestTemplateBuilder());
@@ -49,7 +47,7 @@ class YtPlayerExtractorImplTest {
 		String jsonData = "{\"captions\": { \"playerCaptionsTracklistRenderer\": {\"captionTracks\": [{\"baseUrl\": \"https://example.com/captions\", \"isTranslatable\": true}]}}}";
 
 		// When: 메서드를 호출하여 baseUrl을 추출
-		Optional<String> baseUrl = extractor.extractBaseUrlFromJson(jsonData);
+		Optional<String> baseUrl = extractor.extractBaseUrlFromYtPlayer(jsonData);
 
 		// Then: baseUrl이 예상된 값이어야 함
 		Assertions.assertThat(baseUrl.get()).isEqualTo("https://example.com/captions");
@@ -62,7 +60,7 @@ class YtPlayerExtractorImplTest {
 		String jsonData = "{\"captions\": { \"playerCaptionsTracklistRenderer\": {\"captionTracks\": []}}}";
 
 		// When: 메서드를 호출하여 baseUrl을 추출
-		Optional<String> baseUrl = extractor.extractBaseUrlFromJson(jsonData);
+		Optional<String> baseUrl = extractor.extractBaseUrlFromYtPlayer(jsonData);
 
 		// Then: baseUrl은 null이어야 함
 		Assertions.assertThat(baseUrl).isNotPresent();
@@ -75,7 +73,7 @@ class YtPlayerExtractorImplTest {
 		String jsonData = "{\"videoDetails\": {\"title\": \"Example Video\"}}";
 
 		// When: 메서드를 호출하여 baseUrl을 추출
-		Optional<String> baseUrl = extractor.extractBaseUrlFromJson(jsonData);
+		Optional<String> baseUrl = extractor.extractBaseUrlFromYtPlayer(jsonData);
 
 		// Then: baseUrl은 null이어야 함
 		Assertions.assertThat(baseUrl).isNotPresent();
@@ -104,7 +102,7 @@ class YtPlayerExtractorImplTest {
 		// When: HTML 콘텐츠를 가져옴
 		Optional<String> htmlContent = extractor.fetchHtmlContent(youtubeUrl);
 		Optional<String> html = extractor.extractYtInitialPlayerResponse(htmlContent.get());
-		Optional<String> baseUrlFromJson = extractor.extractBaseUrlFromJson(html.get());
+		Optional<String> baseUrlFromJson = extractor.extractBaseUrlFromYtPlayer(html.get());
 
 		// Then:UrlParser
 		Assertions.assertThat(baseUrlFromJson).isPresent();
@@ -119,7 +117,7 @@ class YtPlayerExtractorImplTest {
 		// When: HTML 콘텐츠를 가져옴
 		Optional<String> htmlContent = extractor.fetchHtmlContent(youtubeUrl);
 		Optional<String> html = extractor.extractYtInitialPlayerResponse(htmlContent.get());
-		Optional<String> baseUrlFromJson = extractor.extractBaseUrlFromJson(html.get());
+		Optional<String> baseUrlFromJson = extractor.extractBaseUrlFromYtPlayer(html.get());
 		Optional<String> transcriptText = extractor.extractTranscriptText(baseUrlFromJson.get());
 
 		// Then:UrlParser

@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 public class OpenAiService implements AiService {
 
 	private static final String summaryPromptTemplate = """
-			The following text is a subtitle script for a YouTube video presented at a developer conference.
-			Please analyze the script and summarize the content in Korean. : %s
+			The text below is a subtitle script from a YouTube video presented at a developer conference.
+			Please analyze this script and write a structured summary in Korean, including main themes, key points, details, and conclusion.
+			: %s
 			""";
 
 	private final OpenAiChatModel chatModel;

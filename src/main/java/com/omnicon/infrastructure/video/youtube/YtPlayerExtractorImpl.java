@@ -38,6 +38,31 @@ public class YtPlayerExtractorImpl implements YtPlayerExtractor {
 	}
 
 	@Override
+	public Optional<String> fetchHtmlContent(String youtubeUrl) {
+		// HTTP 헤더 설정
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("User-Agent", "Mozilla/5.0");
+
+		// HTTP 엔티티 생성
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+
+		// HTTP GET 요청
+		ResponseEntity<String> response = restTemplate.exchange(
+				youtubeUrl,
+				HttpMethod.GET,
+				entity,
+				String.class
+		);
+
+		// 응답 코드 확인
+		if (response.getStatusCode().is2xxSuccessful()) {
+			return Optional.ofNullable(response.getBody());
+		} else {
+			throw new RuntimeException("Failed to fetch HTML content from YouTube URL: " + youtubeUrl);
+		}
+	}
+
+	@Override
 	public Optional<String> extractYtInitialPlayerResponse(String htmlContent) {
 		// Jsoup을 사용하여 HTML 파싱
 		Document doc = Jsoup.parse(htmlContent);
@@ -83,7 +108,7 @@ public class YtPlayerExtractorImpl implements YtPlayerExtractor {
 	}
 
 	@Override
-	public Optional<String> extractBaseUrlFromJson(String jsonData) {
+	public Optional<String> extractBaseUrlFromYtPlayer(String jsonData) {
 		try {
 			// JSON 데이터를 POJO 객체로 매핑
 			YtInitialPlayerResponse response = objectMapper.readValue(jsonData, YtInitialPlayerResponse.class);
@@ -105,31 +130,6 @@ public class YtPlayerExtractorImpl implements YtPlayerExtractor {
 
 		// baseUrl을 찾을 수 없을 경우 null 반환
 		return Optional.empty();
-	}
-
-	@Override
-	public Optional<String> fetchHtmlContent(String youtubeUrl) {
-		// HTTP 헤더 설정
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("User-Agent", "Mozilla/5.0");
-
-		// HTTP 엔티티 생성
-		HttpEntity<String> entity = new HttpEntity<>(headers);
-
-		// HTTP GET 요청
-		ResponseEntity<String> response = restTemplate.exchange(
-				youtubeUrl,
-				HttpMethod.GET,
-				entity,
-				String.class
-		);
-
-		// 응답 코드 확인
-		if (response.getStatusCode().is2xxSuccessful()) {
-			return Optional.ofNullable(response.getBody());
-		} else {
-			throw new RuntimeException("Failed to fetch HTML content from YouTube URL: " + youtubeUrl);
-		}
 	}
 
 	@Override

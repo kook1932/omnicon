@@ -26,7 +26,7 @@ public interface YtPlayerExtractor {
 	 * @param jsonData JSON 데이터 문자열
 	 * @return 추출된 baseUrl 값
 	 */
-	Optional<String> extractBaseUrlFromJson(String jsonData);
+	Optional<String> extractBaseUrlFromYtPlayer(String jsonData);
 
 	Optional<String> extractTranscriptText(String transcriptUrl);
 

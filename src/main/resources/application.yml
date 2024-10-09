@@ -13,9 +13,9 @@ spring:
         hibernate:
           format_sql: true
 
-    ai:
-      openai:
-        api-key:
+  ai:
+    openai:
+      api-key:
 
 server:
   port: 8080
