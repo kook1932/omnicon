@@ -3,14 +3,15 @@ package com.omnicon.infrastructure.video.youtube;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.omnicon.domain.video.youtube.YtInitialPlayerResponse;
 import com.omnicon.domain.video.youtube.YtPlayerExtractor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -23,11 +24,16 @@ import java.util.Optional;
 import static com.omnicon.domain.video.youtube.YtInitialPlayerResponse.*;
 
 @Slf4j
-@RequiredArgsConstructor
 @Component
 public class YtPlayerExtractorImpl implements YtPlayerExtractor {
 
 	private final ObjectMapper objectMapper;
+	private final RestTemplate restTemplate;
+
+	public YtPlayerExtractorImpl(ObjectMapper objectMapper, RestTemplateBuilder builder) {
+		this.objectMapper = objectMapper;
+		this.restTemplate = builder.build();
+	}
 
 	@Override
 	public Optional<String> extractYtInitialPlayerResponse(String htmlContent) {
@@ -100,7 +106,7 @@ public class YtPlayerExtractorImpl implements YtPlayerExtractor {
 	}
 
 	@Override
-	public String fetchHtmlContent(String youtubeUrl) {
+	public Optional<String> fetchHtmlContent(String youtubeUrl) {
 		// HTTP 헤더 설정
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("User-Agent", "Mozilla/5.0");
@@ -111,16 +117,16 @@ public class YtPlayerExtractorImpl implements YtPlayerExtractor {
 		// HTTP GET 요청
 		ResponseEntity<String> response = restTemplate.exchange(
 				youtubeUrl,
-				org.springframework.http.HttpMethod.GET,
+				HttpMethod.GET,
 				entity,
 				String.class
 		);
 
 		// 응답 코드 확인
 		if (response.getStatusCode().is2xxSuccessful()) {
-			return response.getBody();
+			return Optional.ofNullable(response.getBody());
 		} else {
-			throw new Exception("HTTP 응답 코드: " + response.getStatusCodeValue());
+			throw new RuntimeException("Failed to fetch HTML content from YouTube URL: " + youtubeUrl);
 		}
 	}
 }

@@ -25,8 +25,7 @@ public interface YtPlayerExtractor {
 	 *
 	 * @param youtubeUrl YouTube 동영상 페이지의 URL
 	 * @return HTML 콘텐츠 문자열
-	 * @throws Exception 요청 중 오류 발생 시 예외 발생
 	 */
-	String fetchHtmlContent(String youtubeUrl);
+	Optional<String> fetchHtmlContent(String youtubeUrl);
 
 }

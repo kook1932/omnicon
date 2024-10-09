@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 
 import java.util.Optional;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class YtPlayerExtractorImplTest {
 
-	private YtPlayerExtractorImpl extractor = new YtPlayerExtractorImpl(new ObjectMapper());
+	private YtPlayerExtractorImpl extractor = new YtPlayerExtractorImpl(new ObjectMapper(), new RestTemplateBuilder());
 
 	@DisplayName("ytInitialPlayerResponse json 데이터 read")
 	@Test
@@ -78,5 +79,34 @@ class YtPlayerExtractorImplTest {
 
 		// Then: baseUrl은 null이어야 함
 		Assertions.assertThat(baseUrl).isNotPresent();
+	}
+
+	@DisplayName("HTML 콘텐츠가 있음")
+	@Test
+	public void testFetchHtmlContent_Success() {
+		// Given: 유효한 YouTube 동영상 URL
+		String youtubeUrl = "https://www.youtube.com/watch?v=pCE7ibRCZEI"; // 실제 동영상 ID로 변경
+
+		// When: HTML 콘텐츠를 가져옴
+		String htmlContent = extractor.fetchHtmlContent(youtubeUrl).get();
+
+		// Then: HTML 콘텐츠가 있음
+		Assertions.assertThat(htmlContent).isNotBlank();
+		Assertions.assertThat(htmlContent).contains("ytInitialPlayerResponse");
+	}
+
+	@DisplayName("html 요청 -> 추출 -> 파싱")
+	@Test
+	void fetchHtmlExtractorBaseUrl() {
+		// Given: 유효한 YouTube 동영상 URL
+		String youtubeUrl = "https://www.youtube.com/watch?v=pCE7ibRCZEI"; // 실제 동영상 ID로 변경
+
+		// When: HTML 콘텐츠를 가져옴
+		Optional<String> htmlContent = extractor.fetchHtmlContent(youtubeUrl);
+		Optional<String> html = extractor.extractYtInitialPlayerResponse(htmlContent.get());
+		Optional<String> baseUrlFromJson = extractor.extractBaseUrlFromJson(html.get());
+
+		// Then:UrlParser
+		Assertions.assertThat(baseUrlFromJson).isPresent();
 	}
 }
