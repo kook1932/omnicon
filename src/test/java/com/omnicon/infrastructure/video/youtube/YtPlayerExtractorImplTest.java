@@ -109,4 +109,20 @@ class YtPlayerExtractorImplTest {
 		// Then:UrlParser
 		Assertions.assertThat(baseUrlFromJson).isPresent();
 	}
+
+	@DisplayName("자막 텍스트 추출 성공")
+	@Test
+	void extractTranscriptTextTest() {
+	    // given
+		String youtubeUrl = "https://www.youtube.com/watch?v=pCE7ibRCZEI";
+
+		// When: HTML 콘텐츠를 가져옴
+		Optional<String> htmlContent = extractor.fetchHtmlContent(youtubeUrl);
+		Optional<String> html = extractor.extractYtInitialPlayerResponse(htmlContent.get());
+		Optional<String> baseUrlFromJson = extractor.extractBaseUrlFromJson(html.get());
+		Optional<String> transcriptText = extractor.extractTranscriptText(baseUrlFromJson.get());
+
+		// Then:UrlParser
+		Assertions.assertThat(transcriptText).isPresent();
+	}
 }

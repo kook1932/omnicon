@@ -15,10 +15,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static com.omnicon.domain.video.youtube.YtInitialPlayerResponse.*;
@@ -128,5 +130,45 @@ public class YtPlayerExtractorImpl implements YtPlayerExtractor {
 		} else {
 			throw new RuntimeException("Failed to fetch HTML content from YouTube URL: " + youtubeUrl);
 		}
+	}
+
+	@Override
+	public Optional<String> extractTranscriptText(String transcriptUrl) {
+		// HTTP 헤더 설정
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("User-Agent", "Mozilla/5.0");
+
+		// HTTP 엔티티 생성
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+
+		// HTTP GET 요청
+		ResponseEntity<String> response = restTemplate.exchange(
+				transcriptUrl,
+				HttpMethod.GET,
+				entity,
+				String.class
+		);
+
+		// 응답 코드 확인
+		if (response.getStatusCode().is2xxSuccessful() && StringUtils.hasText(response.getBody())) {
+			// XML 파싱
+			Document doc = Jsoup.parse(response.getBody(), "", org.jsoup.parser.Parser.xmlParser());
+
+			// 모든 <text> 엘리먼트 선택
+			Elements textElements = doc.select("text");
+
+			// 텍스트 내용 추출
+			StringBuilder extractedText = new StringBuilder();
+			for (Element textElement : textElements) {
+				String textContent = textElement.text();
+				extractedText.append(textContent).append("\n");
+			}
+
+			return Optional.of(extractedText.toString());
+
+		} else {
+			throw new RuntimeException("Failed to fetch transcript from BaseUrl: " + transcriptUrl);
+		}
+
 	}
 }
