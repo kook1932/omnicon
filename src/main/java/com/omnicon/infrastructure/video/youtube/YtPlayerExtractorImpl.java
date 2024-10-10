@@ -20,7 +20,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import static com.omnicon.domain.video.youtube.YtInitialPlayerResponse.*;

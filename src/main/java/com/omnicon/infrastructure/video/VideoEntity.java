@@ -1,6 +1,7 @@
 package com.omnicon.infrastructure.video;
 
 import com.omnicon.domain.video.Video;
+import com.omnicon.infrastructure.conference.ConferenceEntity;
 import com.omnicon.infrastructure.summary.SummaryEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -27,6 +28,10 @@ public class VideoEntity {
 
 	@OneToOne(mappedBy = "video", cascade = CascadeType.ALL)
 	private SummaryEntity summary;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "conference_id")
+	private ConferenceEntity conference;
 
 	// 연관 관계 매핑
 	// ...
