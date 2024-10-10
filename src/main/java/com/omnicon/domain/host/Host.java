@@ -1,35 +1,43 @@
 package com.omnicon.domain.host;
 
 import com.omnicon.domain.conference.Conference;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.UUID;
 
-@Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@Entity
+@Table(name = "host")
 public class Host {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String hostToken;
+
 	private String name;
+
+	@Column(columnDefinition = "TEXT")
 	private String description;
+
 	private String websiteUrl;
 	private String logoUrl;
-	private String contactEmail;
 
-	private Set<Conference> conferences = new HashSet<>();
+	@OneToMany(mappedBy = "host")
+	private List<Conference> conferences;
 
-	// 생성자
-	public Host(Long id, String name) {
-		this.id = id;
+	@Builder
+	public Host(String name, String description, String websiteUrl, String logoUrl) {
+		this.hostToken = UUID.randomUUID().toString();
 		this.name = name;
+		this.description = description;
+		this.websiteUrl = websiteUrl;
+		this.logoUrl = logoUrl;
 	}
-
-	// 비즈니스 로직 메서드
-	public void addConference(Conference conference) {
-		conferences.add(conference);
-		conference.setCompany(this);
-	}
-
-
 }

@@ -16,15 +16,12 @@ public class VideoReaderImpl implements VideoReader {
 	@Override
 	public Video getVideo(String id) {
 		return videoRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Video not found"))
-				.toDomain();
+				.orElseThrow(() -> new IllegalArgumentException("Video not found"));
 	}
 
 	@Override
 	public List<Video> getVideoList() {
-		return videoRepository.findAll().stream()
-				.map(VideoEntity::toDomain)
-				.toList();
+		return videoRepository.findAll();
 	}
 
 }

@@ -2,46 +2,39 @@ package com.omnicon.domain.conference;
 
 import com.omnicon.domain.host.Host;
 import com.omnicon.domain.video.Video;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-@Getter @Setter
+@Getter
+@Entity
+@Table(name = "conference")
 public class Conference {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String name;
+
+	@Column(columnDefinition = "TEXT")
 	private String description;
+
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private String location;
 	private String websiteUrl;
 
-	private Host host; // 주최자
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "host_entity_id")
+	private Host host;
 
-	private Set<Video> videos = new HashSet<>();
+	@OneToMany(mappedBy = "conference")
+	private List<Video> videos;
 
-	// 생성자
-	public Conference(Long id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-
-
-	// 회사 설정 메서드
-	public void setCompany(Host host) {
-		this.host = host;
-	}
-
-	// 비즈니스 로직 메서드
-	public void addVideo(Video video) {
-		videos.add(video);
-		video.assignConference(this);
-	}
-
-	// 기타 비즈니스 로직
+	// 기본 생성자
+	protected Conference() {}
 
 }
