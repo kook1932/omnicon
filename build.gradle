@@ -51,6 +51,9 @@ dependencies {
 	// OpenAI
 	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
 
+	// PgVector
+	implementation 'org.springframework.ai:spring-ai-pgvector-store-spring-boot-starter'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

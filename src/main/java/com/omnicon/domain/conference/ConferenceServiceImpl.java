@@ -9,12 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ConferenceServiceImpl implements ConferenceService {
 
-	private final HostStore hostStore;
 
 	@Transactional
 	@Override
-	public String register(ConferenceCommand.Register register) {
-		return hostStore.save(register.toEntity()).getHostToken();
+	public String register(ConferenceCommand.Register conferenceRegister) {
+		return "";
 	}
 
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OpenAiService implements AiService {
 
-	private static final String summaryPromptTemplate = """
+	private static final String SUMMARY_PROMPT_TEMPLATE = """
 			The text below is a subtitle script from a YouTube video presented at a developer conference.
 			Please analyze this script and write a structured summary in Korean, including main themes, key points, details, and conclusion.
 			: %s
@@ -18,7 +18,7 @@ public class OpenAiService implements AiService {
 
 	@Override
 	public String summarizeText(String text) {
-		String prompt = String.format(summaryPromptTemplate, text);
+		String prompt = String.format(SUMMARY_PROMPT_TEMPLATE, text);
 		return chatModel.call(prompt);
 	}
 

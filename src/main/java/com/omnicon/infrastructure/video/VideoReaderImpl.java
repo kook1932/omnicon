@@ -20,7 +20,7 @@ public class VideoReaderImpl implements VideoReader {
 	}
 
 	@Override
-	public List<Video> getVideoList() {
+	public List<Video> getAllVideos() {
 		return videoRepository.findAll();
 	}
 

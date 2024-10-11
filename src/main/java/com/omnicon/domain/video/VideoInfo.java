@@ -18,6 +18,12 @@ public class VideoInfo {
 		private String title;
 		private String description;
 		private String thumbnailUrl;
+//		private ConferenceInfo conferenceInfo;
+//		private List<SpeakerInfo> speakerInfoList;
+
+		public String getYoutubeUrl() {
+			return "https://www.youtube.com/watch?v=" + youtubeVideoId;
+		}
 	}
 
 }

@@ -18,4 +18,9 @@ public class Summary {
 	@Column(columnDefinition = "TEXT")
 	private String summaryText;
 
+	// 연관 관계 매핑
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
 }

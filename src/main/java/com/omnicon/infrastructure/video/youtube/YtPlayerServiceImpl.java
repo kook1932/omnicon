@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class YtPlayerServiceImpl implements YtPlayerService {
 
-	private final YtPlayerExtractor ytPlayerExtractorImpl;
+	private final YtPlayerExtractor ytPlayerExtractor;
+
 	@Override
 	public String getTranscriptText(String youtubeUrl) {
 		String htmlContent = fetchHtmlContent(youtubeUrl);
@@ -19,22 +20,22 @@ public class YtPlayerServiceImpl implements YtPlayerService {
 	}
 
 	private String fetchHtmlContent(String youtubeUrl) {
-		return ytPlayerExtractorImpl.fetchHtmlContent(youtubeUrl)
+		return ytPlayerExtractor.fetchHtmlContent(youtubeUrl)
 				.orElseThrow(() -> new IllegalArgumentException("Failed to fetch HTML content from YouTube URL: " + youtubeUrl));
 	}
 
 	private String extractYtInitialPlayerResponse(String htmlContent) {
-		return ytPlayerExtractorImpl.extractYtInitialPlayerResponse(htmlContent)
+		return ytPlayerExtractor.extractYtInitialPlayerResponse(htmlContent)
 				.orElseThrow(() -> new IllegalArgumentException("Failed to extract ytInitialPlayerResponse from HTML content: " + htmlContent));
 	}
 
 	private String extractBaseUrlFromYtPlayer(String ytInitialPlayerResponse) {
-		return ytPlayerExtractorImpl.extractBaseUrlFromYtPlayer(ytInitialPlayerResponse)
+		return ytPlayerExtractor.extractBaseUrlFromYtPlayer(ytInitialPlayerResponse)
 				.orElseThrow(() -> new IllegalArgumentException("Failed to extract base URL from ytInitialPlayerResponse: " + ytInitialPlayerResponse));
 	}
 
 	private String extractTranscriptText(String baseUrl) {
-		return ytPlayerExtractorImpl.extractTranscriptText(baseUrl)
+		return ytPlayerExtractor.extractTranscriptText(baseUrl)
 				.orElseThrow(() -> new IllegalArgumentException("Failed to extract transcript text from base URL: " + baseUrl));
 	}
 

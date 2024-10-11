@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,7 +39,7 @@ public class Conference {
 	private Host host;
 
 	@OneToMany(mappedBy = "conference")
-	private List<Video> videos;
+	private List<Video> videos = new ArrayList<>();
 
 	@Builder
 	public Conference(

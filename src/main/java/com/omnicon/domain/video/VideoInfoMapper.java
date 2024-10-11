@@ -11,6 +11,6 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface VideoInfoMapper {
 
-	VideoInfo from(Video video);
+	VideoInfo.Main from(Video video);
 
 }

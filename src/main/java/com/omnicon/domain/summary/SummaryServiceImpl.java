@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class SummaryServiceImpl implements SummaryService {
 
-	private final YtPlayerService ytPlayerServiceImpl;
-	private final AiService openAiService;
+	private final YtPlayerService ytPlayerService;
+	private final AiService aiService;
 
 	@Override
 	public String summarizeVideo(String youtubeUrl) {
-		String transcriptText = ytPlayerServiceImpl.getTranscriptText(youtubeUrl);
-		return openAiService.summarizeText(transcriptText);
+		String transcriptText = ytPlayerService.getTranscriptText(youtubeUrl);
+		return aiService.summarizeText(transcriptText);
 	}
 
 }
