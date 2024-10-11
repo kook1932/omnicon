@@ -1,7 +1,9 @@
 package com.omnicon.domain.summary;
 
+import com.omnicon.domain.video.VideoInfo;
+
 public interface SummaryService {
 
-	String summarizeVideo(String youtubeUrl);
+	Summary storeSummary(VideoInfo.Main video);
 
 }

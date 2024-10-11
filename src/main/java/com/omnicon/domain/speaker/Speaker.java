@@ -2,10 +2,14 @@ package com.omnicon.domain.speaker;
 
 import com.omnicon.domain.video.videospeaker.VideoSpeaker;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 @Table(name = "speaker")
@@ -20,4 +24,8 @@ public class Speaker {
 	@OneToMany(mappedBy = "speaker")
 	private List<VideoSpeaker> videoSpeakers;
 
+	@Builder
+	public Speaker(String name) {
+		this.name = name;
+	}
 }

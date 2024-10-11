@@ -1,24 +1,23 @@
 package com.omnicon.domain.summary;
 
+import com.omnicon.application.service.Summarizer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
-class SummaryServiceImplTest {
+class SummarizerImplTest {
 
 	@Autowired
-	private SummaryService summaryServiceImpl;
+	private Summarizer summarizerImpl;
 
 	@Test
 	void summarizeVideoTest() {
 		String youtubeUrl = "https://www.youtube.com/watch?v=pCE7ibRCZEI";
 
 		// When: SUMMARY
-		String summary = summaryServiceImpl.summarizeVideo(youtubeUrl);
+		String summary = summarizerImpl.summarizeVideo(youtubeUrl);
 
 		// Then: SUMMARY
 		System.out.println("summary = " + summary);

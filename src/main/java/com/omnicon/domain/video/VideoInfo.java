@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+
 public class VideoInfo {
 
 	@Builder
@@ -18,11 +20,21 @@ public class VideoInfo {
 		private String title;
 		private String description;
 		private String thumbnailUrl;
-//		private ConferenceInfo conferenceInfo;
-//		private List<SpeakerInfo> speakerInfoList;
 
 		public String getYoutubeUrl() {
 			return "https://www.youtube.com/watch?v=" + youtubeVideoId;
+		}
+
+		// toMap
+		public Map<String, Object> toMetadataMap() {
+			return Map.of(
+					"id", id,
+					"videoToken", videoToken,
+					"youtubeVideoId", youtubeVideoId,
+					"title", title,
+					"description", description,
+					"thumbnailUrl", thumbnailUrl
+			);
 		}
 	}
 

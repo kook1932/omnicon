@@ -1,13 +1,12 @@
-package com.omnicon.domain.summary;
+package com.omnicon.application.service;
 
-import com.omnicon.application.service.AiService;
 import com.omnicon.domain.video.youtube.YtPlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class SummaryServiceImpl implements SummaryService {
+public class SummarizerImpl implements Summarizer {
 
 	private final YtPlayerService ytPlayerService;
 	private final AiService aiService;

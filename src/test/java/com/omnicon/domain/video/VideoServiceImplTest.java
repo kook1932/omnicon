@@ -59,8 +59,8 @@ class VideoServiceImplTest {
 		Video video = Video.builder().youtubeVideoId("yt1234").build();
 		when(videoStore.save(any(Video.class))).thenReturn(video);
 
-		Speaker speaker1 = new Speaker();
-		Speaker speaker2 = new Speaker();
+		Speaker speaker1 = Speaker.builder().name("speaker1").build();
+		Speaker speaker2 = Speaker.builder().name("speaker1").build();
 		when(speakerReader.getAllSpeakers(register.getSpeakerTokens())).thenReturn(List.of(speaker1, speaker2));
 
 		VideoSpeaker videoSpeaker1 = VideoSpeaker.builder().video(video).speaker(speaker1).build();

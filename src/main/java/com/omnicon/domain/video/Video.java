@@ -1,7 +1,6 @@
 package com.omnicon.domain.video;
 
 import com.omnicon.domain.conference.Conference;
-import com.omnicon.domain.summary.Summary;
 import com.omnicon.domain.video.videospeaker.VideoSpeaker;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -32,9 +31,6 @@ public class Video {
 	private LocalDateTime publishedAt;
 	private String thumbnailUrl;
 	private Integer duration;
-
-	@OneToOne(mappedBy = "video", cascade = CascadeType.ALL)
-	private Summary summary;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "conference_id")
