@@ -1,0 +1,17 @@
+### 컨퍼런스 등록
+POST http://localhost:8080/api/v1/conferences
+Content-Type: application/json
+
+{
+  "hostToken": "7de03146-5104-4f73-b09c-3b951e245ba7",
+  "name": "모두의 컨퍼런스 1회",
+  "description":  "최초 컨퍼런스 진행",
+  "startDate": "2024-10-15",
+  "endDate":  "2024-10-15",
+  "location": "삼성역",
+  "websiteUrl":  "https://omnicon.com"
+}
+
+
+### 컨퍼런스 조회
+GET http://localhost:8080/api/v1/conferences/
