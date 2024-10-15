@@ -1,5 +1,6 @@
 package com.omnicon.domain.speaker;
 
+import com.omnicon.common.util.KeyGenerator;
 import com.omnicon.domain.video.videospeaker.VideoSpeaker;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -26,6 +27,7 @@ public class Speaker {
 
 	@Builder
 	public Speaker(String name) {
+		this.speakerToken = KeyGenerator.generateUUIDKey();
 		this.name = name;
 	}
 }

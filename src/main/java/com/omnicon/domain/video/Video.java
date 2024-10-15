@@ -1,5 +1,6 @@
 package com.omnicon.domain.video;
 
+import com.omnicon.common.util.KeyGenerator;
 import com.omnicon.domain.conference.Conference;
 import com.omnicon.domain.video.videospeaker.VideoSpeaker;
 import jakarta.persistence.*;
@@ -11,7 +12,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -48,7 +48,7 @@ public class Video {
 			String thumbnailUrl,
 			Integer duration
 	) {
-		this.videoToken = UUID.randomUUID().toString();
+		this.videoToken = KeyGenerator.generateUUIDKey();
 		this.youtubeVideoId = youtubeVideoId;
 		this.title = title;
 		this.description = description;

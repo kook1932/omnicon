@@ -1,10 +1,8 @@
 package com.omnicon.domain.video;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class VideoInfo {
@@ -27,15 +25,25 @@ public class VideoInfo {
 
 		// toMap
 		public Map<String, Object> toMetadataMap() {
-			return Map.of(
+			return new HashMap<>(Map.of(
 					"id", id,
 					"videoToken", videoToken,
 					"youtubeVideoId", youtubeVideoId,
 					"title", title,
 					"description", description,
 					"thumbnailUrl", thumbnailUrl
-			);
+			));
 		}
+	}
+
+	@Builder
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Getter
+	public static class Search {
+		private String title;
+		private String summary;
+		private int limit;
 	}
 
 }

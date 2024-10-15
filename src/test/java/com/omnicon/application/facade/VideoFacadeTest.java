@@ -1,19 +1,26 @@
 package com.omnicon.application.facade;
 
+import com.omnicon.application.service.ai.AiService;
 import com.omnicon.domain.conference.Conference;
 import com.omnicon.domain.speaker.Speaker;
 import com.omnicon.domain.video.VideoCommand;
+import com.omnicon.domain.video.VideoInfo;
 import com.omnicon.infrastructure.conference.ConferenceRepository;
 import com.omnicon.infrastructure.speaker.SpeakerRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.ai.document.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
 
 @Transactional
 @SpringBootTest
@@ -27,6 +34,16 @@ class VideoFacadeTest {
 
 	@Autowired
 	private SpeakerRepository speakerRepository;
+
+	@MockBean
+	private AiService aiService;
+
+	@BeforeEach
+	void setUp() {
+		// 과금 회피
+		given(aiService.summarizeText(anyString(), anyString())).willReturn("영상 내용을 요약했습니다. 테스트 관련 내용입니다.");
+		given(aiService.similaritySearch(anyString(), anyInt())).willReturn(List.of(new Document("document")));
+	}
 
 	@Test
 	void 비디오내용과_요약본_vector를_저장한다() {
@@ -51,6 +68,7 @@ class VideoFacadeTest {
 				.youtubeVideoId("pCE7ibRCZEI")
 				.title("저장 테스트")
 				.description("설명")
+				.thumbnailUrl("https://thumbnail.url")
 				.conferenceToken(conference.getConferenceToken())
 				.speakerTokens(List.of(speaker1.getSpeakerToken(), speaker2.getSpeakerToken()))
 				.build();
@@ -58,7 +76,20 @@ class VideoFacadeTest {
 		String videoToken = videoFacade.registerVideo(register);
 
 		Assertions.assertThat(videoToken).isNotBlank();
-
 	}
 
+	@Test
+	void 비디오_요약본_검색() {
+		// given
+		VideoInfo.Search search = VideoInfo.Search.builder()
+				.summary("테스트 관련 내용")
+				.limit(10)
+				.build();
+
+		// when : 유사도 검색
+		List<VideoInfo.Main> videos = videoFacade.searchSummary(search);
+
+		// then
+		Assertions.assertThat(videos).hasSizeGreaterThan(0);
+	}
 }
