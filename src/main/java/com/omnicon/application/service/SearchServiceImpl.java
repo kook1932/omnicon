@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.omnicon.application.service.ai.AiService;
 import com.omnicon.domain.video.VideoInfo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ai.embedding.EmbeddingResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
