@@ -1,7 +1,6 @@
-package com.omnicon.application.facade;
+package com.omnicon.application.video;
 
 import com.omnicon.interfaces.ai.AiService;
-import com.omnicon.application.video.VideoFacade;
 import com.omnicon.domain.conference.Conference;
 import com.omnicon.domain.speaker.Speaker;
 import com.omnicon.domain.video.VideoCommand;

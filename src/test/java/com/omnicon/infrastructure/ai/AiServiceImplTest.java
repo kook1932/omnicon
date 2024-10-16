@@ -1,6 +1,5 @@
-package com.omnicon.application.service;
+package com.omnicon.infrastructure.ai;
 
-import com.omnicon.infrastructure.ai.AiServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
