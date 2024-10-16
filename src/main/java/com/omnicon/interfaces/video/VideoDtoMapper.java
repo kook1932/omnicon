@@ -1,6 +1,7 @@
 package com.omnicon.interfaces.video;
 
 import com.omnicon.domain.video.VideoCommand;
+import com.omnicon.domain.video.VideoInfo;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -13,5 +14,9 @@ import org.mapstruct.ReportingPolicy;
 public interface VideoDtoMapper {
 
 	VideoCommand.Register from(VideoDto.RegisterRequest request);
+
+	VideoInfo.Search from(VideoDto.SearchRequest request);
+
+	VideoDto.Main from(VideoInfo.Main results);
 
 }

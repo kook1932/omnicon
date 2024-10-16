@@ -1,6 +1,6 @@
 package com.omnicon.interfaces.conference;
 
-import com.omnicon.application.facade.ConferenceFacade;
+import com.omnicon.application.conference.ConferenceFacade;
 import com.omnicon.common.response.CommonResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

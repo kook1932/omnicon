@@ -1,6 +1,6 @@
 package com.omnicon.application.service;
 
-import com.omnicon.application.service.ai.AiServiceImpl;
+import com.omnicon.infrastructure.ai.AiServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +11,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.embedding.EmbeddingResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;

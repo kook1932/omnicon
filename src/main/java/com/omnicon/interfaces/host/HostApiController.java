@@ -1,6 +1,6 @@
 package com.omnicon.interfaces.host;
 
-import com.omnicon.application.facade.HostFacade;
+import com.omnicon.application.host.HostFacade;
 import com.omnicon.common.response.CommonResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

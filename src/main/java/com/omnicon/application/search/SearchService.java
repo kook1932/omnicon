@@ -1,4 +1,4 @@
-package com.omnicon.application.service;
+package com.omnicon.application.search;
 
 import com.omnicon.domain.video.VideoInfo;
 

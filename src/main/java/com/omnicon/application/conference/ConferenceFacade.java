@@ -1,4 +1,4 @@
-package com.omnicon.application.facade;
+package com.omnicon.application.conference;
 
 import com.omnicon.domain.conference.ConferenceCommand;
 import com.omnicon.domain.conference.ConferenceService;

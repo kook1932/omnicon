@@ -1,9 +1,11 @@
 package com.omnicon.interfaces.video;
 
-import com.omnicon.application.facade.VideoFacade;
+import com.omnicon.application.video.VideoFacade;
 import com.omnicon.common.response.CommonResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +18,7 @@ public class VideoApiController {
 	private final VideoDtoMapper videoDtoMapper;
 
 	@PostMapping
-	public CommonResponse<String> register(VideoDto.RegisterRequest request) {
+	public CommonResponse<String> register(@RequestBody @Valid VideoDto.RegisterRequest request) {
 		String videoToken = videoFacade.registerVideo(videoDtoMapper.from(request));
 		return CommonResponse.success(videoToken);
 	}

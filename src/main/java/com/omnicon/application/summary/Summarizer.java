@@ -1,4 +1,4 @@
-package com.omnicon.application.service;
+package com.omnicon.application.summary;
 
 public interface Summarizer {
 

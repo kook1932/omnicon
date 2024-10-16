@@ -1,4 +1,4 @@
-package com.omnicon.application.facade;
+package com.omnicon.application.host;
 
 import com.omnicon.domain.host.HostCommand;
 import com.omnicon.domain.host.HostService;

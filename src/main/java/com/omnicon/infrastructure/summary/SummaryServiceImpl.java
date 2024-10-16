@@ -1,6 +1,6 @@
 package com.omnicon.infrastructure.summary;
 
-import com.omnicon.application.service.Summarizer;
+import com.omnicon.application.summary.Summarizer;
 import com.omnicon.domain.summary.Summary;
 import com.omnicon.domain.summary.SummaryService;
 import com.omnicon.domain.video.VideoInfo;

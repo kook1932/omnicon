@@ -1,6 +1,6 @@
-package com.omnicon.application.facade;
+package com.omnicon.application.video;
 
-import com.omnicon.application.service.SearchService;
+import com.omnicon.application.search.SearchService;
 import com.omnicon.domain.summary.SummaryService;
 import com.omnicon.domain.video.VideoCommand;
 import com.omnicon.domain.video.VideoInfo;

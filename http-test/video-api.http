@@ -1,4 +1,4 @@
-### 컨퍼런스 호스트 등록
+### 영상 내용 등록
 POST http://localhost:8080/api/v1/videos
 Content-Type: application/json
 
@@ -7,6 +7,5 @@ Content-Type: application/json
   "title": "스프링 테스트 코드",
   "description": "스프링 테스트 코드 라이브러리",
   "thumbnailUrl": "thumbnailUrl",
-  "conferenceToken": "",
-  "speakerTokens": "",
+  "conferenceToken": "b646551c-e0cf-464c-9363-be984c677c88"
 }

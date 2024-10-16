@@ -35,7 +35,7 @@ public class Conference {
 	private String websiteUrl;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "host_entity_id")
+	@JoinColumn(name = "host_id")
 	private Host host;
 
 	@OneToMany(mappedBy = "conference")

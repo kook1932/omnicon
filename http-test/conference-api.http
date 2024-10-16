@@ -3,7 +3,7 @@ POST http://localhost:8080/api/v1/conferences
 Content-Type: application/json
 
 {
-  "hostToken": "7de03146-5104-4f73-b09c-3b951e245ba7",
+  "hostToken": "6c0a42ae-0fae-4984-8b22-441de07fa07c",
   "name": "모두의 컨퍼런스 1회",
   "description":  "최초 컨퍼런스 진행",
   "startDate": "2024-10-15",

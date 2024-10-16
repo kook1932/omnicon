@@ -1,6 +1,6 @@
-package com.omnicon.application.service;
+package com.omnicon.application.summary;
 
-import com.omnicon.application.service.ai.AiService;
+import com.omnicon.interfaces.ai.AiService;
 import com.omnicon.common.constant.PromptTemplate;
 import com.omnicon.domain.video.youtube.YtPlayerService;
 import lombok.RequiredArgsConstructor;
