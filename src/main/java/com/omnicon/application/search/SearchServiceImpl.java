@@ -1,7 +1,7 @@
 package com.omnicon.application.search;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.omnicon.interfaces.ai.AiService;
+import com.omnicon.application.ai.AiService;
 import com.omnicon.domain.video.VideoInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

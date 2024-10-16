@@ -7,6 +7,7 @@ import java.util.List;
 public interface VideoStore {
 
 	Video save(Video video);
+
 	List<VideoSpeaker> saveAll(List<VideoSpeaker> videoSpeakerList);
 
 }

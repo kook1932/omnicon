@@ -22,11 +22,13 @@ public class Conference {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(unique = true)
 	private String conferenceToken;
 
 	private String name;
 
-	@Column(columnDefinition = "TEXT")
+	@Column
 	private String description;
 
 	private LocalDate startDate;

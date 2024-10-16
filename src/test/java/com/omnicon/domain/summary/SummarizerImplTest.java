@@ -1,6 +1,6 @@
 package com.omnicon.domain.summary;
 
-import com.omnicon.interfaces.ai.AiService;
+import com.omnicon.application.ai.AiService;
 import com.omnicon.application.summary.Summarizer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

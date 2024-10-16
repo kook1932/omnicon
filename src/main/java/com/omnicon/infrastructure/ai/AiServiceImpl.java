@@ -1,6 +1,6 @@
 package com.omnicon.infrastructure.ai;
 
-import com.omnicon.interfaces.ai.AiService;
+import com.omnicon.application.ai.AiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.document.Document;

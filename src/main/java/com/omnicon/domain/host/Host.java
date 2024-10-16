@@ -19,11 +19,13 @@ public class Host {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(unique = true)
 	private String hostToken;
 
 	private String name;
 
-	@Column(columnDefinition = "TEXT")
+	@Column
 	private String description;
 
 	private String websiteUrl;

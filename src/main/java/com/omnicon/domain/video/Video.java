@@ -22,6 +22,8 @@ public class Video {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(unique = true)
 	private String videoToken;
 
 	private String youtubeVideoId;

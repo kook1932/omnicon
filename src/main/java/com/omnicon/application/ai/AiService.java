@@ -1,4 +1,4 @@
-package com.omnicon.interfaces.ai;
+package com.omnicon.application.ai;
 
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingResponse;
