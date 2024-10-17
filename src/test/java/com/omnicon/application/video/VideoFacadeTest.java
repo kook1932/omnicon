@@ -1,12 +1,15 @@
 package com.omnicon.application.video;
 
 import com.omnicon.application.ai.AiService;
+import com.omnicon.domain.common.SearchInfo;
 import com.omnicon.domain.conference.Conference;
 import com.omnicon.domain.speaker.Speaker;
 import com.omnicon.domain.video.VideoCommand;
 import com.omnicon.domain.video.VideoInfo;
 import com.omnicon.infrastructure.conference.ConferenceRepository;
 import com.omnicon.infrastructure.speaker.SpeakerRepository;
+import com.omnicon.interfaces.search.SearchDto;
+import com.omnicon.interfaces.search.SearchType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -81,13 +84,14 @@ class VideoFacadeTest {
 	@Test
 	void 비디오_요약본_검색() {
 		// given
-		VideoInfo.Search search = VideoInfo.Search.builder()
+		SearchInfo.Request search = SearchInfo.Request.builder()
+				.searchType(SearchType.VIDEO_SUMMARY)
 				.summary("테스트 관련 내용")
 				.limit(10)
 				.build();
 
 		// when : 유사도 검색
-		List<VideoInfo.Main> videos = videoFacade.searchSummary(search);
+		List<VideoInfo.Main> videos = videoFacade.searchVideo(search);
 
 		// then
 		Assertions.assertThat(videos).hasSizeGreaterThan(0);

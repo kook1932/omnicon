@@ -1,5 +1,6 @@
 package com.omnicon.domain.video;
 
+import com.omnicon.interfaces.search.SearchType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -44,6 +45,7 @@ public class VideoInfo {
 	@NoArgsConstructor
 	@Getter
 	public static class Search {
+		private SearchType searchType;
 		private String title;
 		private String summary;
 		private int limit;

@@ -1,6 +1,5 @@
 package com.omnicon.interfaces.video;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,16 +17,6 @@ public class VideoDto {
 		private Integer duration;
 		private String conferenceToken;
 		private List<String> speakerTokens;
-	}
-
-	@Data
-	public static class SearchRequest {
-		private String title;
-
-		@NotBlank
-		private String summary;
-
-		private int limit = 5;
 	}
 
 	@Builder

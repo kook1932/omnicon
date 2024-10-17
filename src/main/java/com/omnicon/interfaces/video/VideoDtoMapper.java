@@ -15,8 +15,6 @@ public interface VideoDtoMapper {
 
 	VideoCommand.Register from(VideoDto.RegisterRequest request);
 
-	VideoInfo.Search from(VideoDto.SearchRequest request);
-
 	VideoDto.Main from(VideoInfo.Main results);
 
 }

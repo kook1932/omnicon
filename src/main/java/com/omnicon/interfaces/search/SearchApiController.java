@@ -21,10 +21,11 @@ public class SearchApiController {
 
 	private final VideoFacade videoFacade;
 	private final VideoDtoMapper videoDtoMapper;
+	private final SearchDtoMapper searchDtoMapper;
 
 	@GetMapping("/video")
-	public CommonResponse<List<VideoDto.Main>> searchSummary(@Valid VideoDto.SearchRequest request) {
-		var videoList = videoFacade.searchSummary(videoDtoMapper.from(request));
+	public CommonResponse<List<VideoDto.Main>> searchSummary(@Valid SearchDto.Request request) {
+		var videoList = videoFacade.searchVideo(searchDtoMapper.from(request));
 		return CommonResponse.success(
 				videoList.stream()
 						.map(videoDtoMapper::from)

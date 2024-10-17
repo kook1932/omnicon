@@ -1,11 +1,11 @@
 package com.omnicon.application.search;
 
-import com.omnicon.domain.video.VideoInfo;
+import com.omnicon.domain.common.SearchInfo;
 
 import java.util.List;
 
-public interface SearchService {
+public interface SearchService<T> {
 
-	List<VideoInfo.Main> searchSummary(VideoInfo.Search search);
+	List<T> searchVideo(SearchInfo.Request search);
 
 }
