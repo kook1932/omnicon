@@ -19,9 +19,9 @@ import java.util.List;
 @RestController
 public class SearchApiController {
 
+	private final SearchDtoMapper searchDtoMapper;
 	private final VideoFacade videoFacade;
 	private final VideoDtoMapper videoDtoMapper;
-	private final SearchDtoMapper searchDtoMapper;
 
 	@GetMapping("/video")
 	public CommonResponse<List<VideoDto.Main>> searchSummary(@Valid SearchDto.Request request) {
