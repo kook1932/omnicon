@@ -24,7 +24,6 @@ public class VideoDto {
 	@NoArgsConstructor
 	@Getter
 	public static class Main {
-		private String id;
 		private String videoToken;
 		private String youtubeVideoId;
 		private String title;

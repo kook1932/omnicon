@@ -17,6 +17,7 @@ public class VideoServiceImpl implements VideoService {
 	private final ConferenceReader conferenceReader;
 	private final SpeakerReader speakerReader;
 	private final VideoStore videoStore;
+	private final VideoReader videoReader;
 	private final VideoInfoMapper videoInfoMapper;
 
 	@Transactional
@@ -39,5 +40,13 @@ public class VideoServiceImpl implements VideoService {
 		);
 
 		return videoInfoMapper.from(video);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<VideoInfo.Main> getTop10Videos() {
+		return videoReader.getTop10Videos().stream()
+				.map(videoInfoMapper::from)
+				.toList();
 	}
 }

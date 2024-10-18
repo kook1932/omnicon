@@ -6,8 +6,6 @@ public interface VideoReader {
 
 	Video getVideo(String id);
 
-	List<Video> getAllVideos();
-
-	// 필요한 도메인 메서드 추가
+	List<Video> getTop10Videos();
 
 }

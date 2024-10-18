@@ -96,4 +96,20 @@ class VideoFacadeTest {
 		// then
 		Assertions.assertThat(videos).hasSizeGreaterThan(0);
 	}
+
+	@Test
+	void 비디오_리스트_조회() {
+	    // given
+		SearchInfo.Request search = SearchInfo.Request.builder()
+				.limit(10)
+				.build();
+
+	    // when
+		List<VideoInfo.Main> searchedVideo = videoFacade.searchVideo(search);
+
+		// then
+		Assertions.assertThat(searchedVideo).hasSizeGreaterThan(0);
+	}
+
+
 }
