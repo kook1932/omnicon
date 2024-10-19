@@ -14,9 +14,21 @@ public class VideoDto {
 		private String description;
 		private String thumbnailUrl;
 		private LocalDateTime publishedAt;
-		private Integer duration;
+		private String summary;
 		private String conferenceToken;
 		private List<String> speakerTokens;
+	}
+
+	@Builder
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Getter
+	public static class RetrieveRequest {
+		private String videoToken;
+		private String youtubeVideoId;
+		private String title;
+		private String description;
+		private String summary;
 	}
 
 	@Builder

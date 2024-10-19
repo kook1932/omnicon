@@ -1,11 +1,13 @@
 package com.omnicon.domain.summary;
 
-import com.omnicon.domain.video.VideoInfo;
+import com.omnicon.domain.common.DomainType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.ai.document.Document;
+
+import java.util.Map;
 
 @Builder
 @AllArgsConstructor
@@ -13,16 +15,16 @@ import org.springframework.ai.document.Document;
 @Getter
 public class Summary {
 
-	private String videoToken;
-	private String summaryText;
-	private VideoInfo.Main video;
+	private String domainToken;
+	private DomainType domainType;
+	private Map<String, Object> domainMetaData;
 	private Document document;
 
 	public Document toDocument() {
 		return new Document(
-				this.videoToken,
-				this.summaryText,
-				this.video.toMetadataMap()
+				this.domainToken,
+				this.domainType.getDomainName(),
+				this.domainMetaData
 		);
 	}
 

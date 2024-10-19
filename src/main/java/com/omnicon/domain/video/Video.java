@@ -29,10 +29,10 @@ public class Video {
 	private String youtubeVideoId;
 	private String title;
 	private String description;
+	private String summary;
 
 	private LocalDateTime publishedAt;
 	private String thumbnailUrl;
-	private Integer duration;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "conference_id")
@@ -48,15 +48,15 @@ public class Video {
 			String description,
 			LocalDateTime publishedAt,
 			String thumbnailUrl,
-			Integer duration
+			String summary
 	) {
 		this.videoToken = KeyGenerator.generateUUIDKey();
 		this.youtubeVideoId = youtubeVideoId;
 		this.title = title;
 		this.description = description;
+		this.summary = summary;
 		this.publishedAt = publishedAt;
 		this.thumbnailUrl = thumbnailUrl;
-		this.duration = duration;
 	}
 
 	// 연관 관계 매핑

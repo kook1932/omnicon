@@ -1,10 +1,7 @@
 package com.omnicon.domain.video;
 
 import com.omnicon.domain.conference.Conference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,14 +11,14 @@ public class VideoCommand {
 	@Builder
 	@AllArgsConstructor
 	@NoArgsConstructor
-	@Getter
+	@Getter @Setter
 	public static class Register {
 		private String youtubeVideoId;
 		private String title;
 		private String description;
 		private String thumbnailUrl;
 		private LocalDateTime publishedAt;
-		private Integer duration;
+		private String summary;
 		private String conferenceToken;
 		private List<String> speakerTokens;
 
@@ -32,11 +29,15 @@ public class VideoCommand {
 					.description(description)
 					.thumbnailUrl(thumbnailUrl)
 					.publishedAt(publishedAt)
-					.duration(duration)
+					.summary(summary)
 					.build();
 
 			video.setConference(conference);
 			return video;
+		}
+
+		public String getYoutubeUrl() {
+			return "https://www.youtube.com/watch?v=" + youtubeVideoId;
 		}
 
 	}

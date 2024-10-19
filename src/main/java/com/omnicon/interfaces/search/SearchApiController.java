@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+// 통합검색
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/search")
@@ -23,14 +24,14 @@ public class SearchApiController {
 	private final VideoFacade videoFacade;
 	private final VideoDtoMapper videoDtoMapper;
 
-	@GetMapping("/video")
-	public CommonResponse<List<VideoDto.Main>> searchSummary(@Valid SearchDto.Request request) {
-		var videoList = videoFacade.searchVideo(searchDtoMapper.from(request));
-		return CommonResponse.success(
-				videoList.stream()
-						.map(videoDtoMapper::from)
-						.toList()
-		);
-	}
+//	@GetMapping("/video")
+//	public CommonResponse<List<VideoDto.Main>> searchSummary(@Valid SearchDto.Request request) {
+//		var videoList = videoFacade.searchVideo(searchDtoMapper.from(request));
+//		return CommonResponse.success(
+//				videoList.stream()
+//						.map(videoDtoMapper::from)
+//						.toList()
+//		);
+//	}
 
 }

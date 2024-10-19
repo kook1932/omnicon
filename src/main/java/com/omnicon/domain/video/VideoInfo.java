@@ -1,6 +1,5 @@
 package com.omnicon.domain.video;
 
-import com.omnicon.interfaces.search.SearchType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +20,7 @@ public class VideoInfo {
 		private String youtubeVideoId;
 		private String title;
 		private String description;
+		private String summary;
 		private String thumbnailUrl;
 
 		public String getYoutubeUrl() {
@@ -44,11 +44,12 @@ public class VideoInfo {
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@Getter
-	public static class Search {
-		private SearchType searchType;
+	public static class Retrieve {
+		private String videoToken;
+		private String youtubeVideoId;
 		private String title;
+		private String description;
 		private String summary;
-		private int limit;
 	}
 
 }

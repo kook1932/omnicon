@@ -1,5 +1,6 @@
 package com.omnicon.domain.video;
 
+import com.omnicon.application.summary.Summarizer;
 import com.omnicon.domain.conference.Conference;
 import com.omnicon.domain.conference.ConferenceReader;
 import com.omnicon.domain.speaker.SpeakerReader;
@@ -17,13 +18,17 @@ public class VideoServiceImpl implements VideoService {
 	private final ConferenceReader conferenceReader;
 	private final SpeakerReader speakerReader;
 	private final VideoStore videoStore;
-	private final VideoReader videoReader;
+	private final Summarizer summarizer;
 	private final VideoInfoMapper videoInfoMapper;
 
 	@Transactional
 	@Override
 	public VideoInfo.Main registerVideo(VideoCommand.Register register) {
 		Conference conference = conferenceReader.getConferenceBy(register.getConferenceToken());
+
+		register.setSummary(
+				summarizer.summarizeVideo(register.getYoutubeUrl())
+		);
 		Video video = videoStore.save(register.toEntity(conference));
 
 		List<VideoSpeaker> videoSpeakers = speakerReader.getAllSpeakers(register.getSpeakerTokens()).stream()
@@ -42,11 +47,9 @@ public class VideoServiceImpl implements VideoService {
 		return videoInfoMapper.from(video);
 	}
 
-	@Transactional(readOnly = true)
-	@Override
-	public List<VideoInfo.Main> getTop10Videos() {
-		return videoReader.getTop10Videos().stream()
-				.map(videoInfoMapper::from)
-				.toList();
-	}
+//	@Override
+//	public List<VideoInfo.Main> retrieveVideo(VideoInfo.Retrieve retrieve) {
+//		return List.of();
+//	}
+
 }

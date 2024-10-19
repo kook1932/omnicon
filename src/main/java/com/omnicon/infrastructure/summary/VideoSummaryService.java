@@ -1,6 +1,6 @@
 package com.omnicon.infrastructure.summary;
 
-import com.omnicon.application.summary.Summarizer;
+import com.omnicon.domain.common.DomainType;
 import com.omnicon.domain.summary.Summary;
 import com.omnicon.domain.summary.SummaryService;
 import com.omnicon.domain.video.VideoInfo;
@@ -12,18 +12,16 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class SummaryServiceImpl implements SummaryService {
+public class VideoSummaryService implements SummaryService {
 
-	private final Summarizer summarizer;
 	private final VectorStore vectorStore;
 
 	@Override
 	public Summary storeSummary(VideoInfo.Main video) {
-		String summarizedVideo = summarizer.summarizeVideo(video.getYoutubeUrl());
 		Summary summary = Summary.builder()
-				.videoToken(video.getVideoToken())
-				.summaryText(summarizedVideo)
-				.video(video)
+				.domainToken(video.getVideoToken())
+				.domainType(DomainType.VIDEO)
+				.domainMetaData(video.toMetadataMap())
 				.build();
 
 		vectorStore.add(List.of(summary.toDocument()));

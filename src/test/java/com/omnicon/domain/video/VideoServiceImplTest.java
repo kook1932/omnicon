@@ -1,5 +1,6 @@
 package com.omnicon.domain.video;
 
+import com.omnicon.application.summary.Summarizer;
 import com.omnicon.domain.conference.Conference;
 import com.omnicon.domain.conference.ConferenceReader;
 import com.omnicon.domain.speaker.Speaker;
@@ -15,8 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -34,6 +34,9 @@ class VideoServiceImplTest {
 
 	@Mock
 	private VideoInfoMapper videoInfoMapper;
+
+	@Mock
+	private Summarizer summarizer;
 
 	@InjectMocks
 	private VideoServiceImpl videoServiceImpl;

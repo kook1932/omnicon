@@ -11,18 +11,18 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Component
-public class VideoDomainFinder implements VideoFinder {
+public class VideoDomainFinder {
 
 	private final VideoService videoService;
 
-	@Override
-	public List<VideoInfo.Main> findBySearchType(SearchInfo.Request search) {
-		return videoService.getTop10Videos();
-	}
+//	@Override
+//	public List<VideoInfo.Main> findBySearchType(SearchInfo.Request search) {
+//		return videoService.getTop10Videos();
+//	}
 
-	@Override
-	public boolean support(SearchType searchType) {
-		return searchType == null || searchType == SearchType.VIDEO_TITLE;
-	}
+//	@Override
+//	public boolean support(SearchType searchType) {
+//		return searchType == null || searchType == SearchType.VIDEO_TITLE;
+//	}
 
 }
