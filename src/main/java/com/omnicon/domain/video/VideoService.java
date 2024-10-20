@@ -9,4 +9,6 @@ public interface VideoService {
 
 	Page<VideoInfo.Main> retrieveVideo(VideoInfo.Retrieve retrieve, Pageable pageable);
 
+	VideoInfo.Main retrieveVideo(String videoToken);
+
 }

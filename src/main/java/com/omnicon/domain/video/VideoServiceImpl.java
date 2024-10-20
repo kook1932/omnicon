@@ -55,4 +55,9 @@ public class VideoServiceImpl implements VideoService {
 		return videoReader.findAllBy(retrieve, pageable);
 	}
 
+	@Override
+	public VideoInfo.Main retrieveVideo(String videoToken) {
+		return videoInfoMapper.from(videoReader.findBy(videoToken));
+	}
+
 }

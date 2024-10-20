@@ -32,4 +32,10 @@ public class VideoApiController {
 		return CommonResponse.success(videoPage);
 	}
 
+	@GetMapping("/{videoToken}")
+	public CommonResponse<VideoDto.Main> retrieveVideo(@PathVariable("videoToken") String videoToken) {
+		var video = videoFacade.retrieveVideo(videoToken);
+		return CommonResponse.success(videoDtoMapper.from(video));
+	}
+
 }

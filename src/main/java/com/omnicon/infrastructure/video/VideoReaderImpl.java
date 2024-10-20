@@ -15,8 +15,8 @@ public class VideoReaderImpl implements VideoReader {
 	private final VideoRepository videoRepository;
 
 	@Override
-	public Video getVideo(String id) {
-		return videoRepository.findById(id)
+	public Video findBy(String videoToken) {
+		return videoRepository.findByVideoToken(videoToken)
 				.orElseThrow(() -> new IllegalArgumentException("Video not found"));
 	}
 

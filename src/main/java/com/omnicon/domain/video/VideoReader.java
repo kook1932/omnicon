@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface VideoReader {
 
-	Video getVideo(String id);
+	Video findBy(String videoToken);
 
 	Page<VideoInfo.Main> findAllBy(VideoInfo.Retrieve retrieve, Pageable pageable);
 

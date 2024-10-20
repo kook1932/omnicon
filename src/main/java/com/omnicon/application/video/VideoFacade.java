@@ -26,4 +26,8 @@ public class VideoFacade {
 		return videoService.retrieveVideo(request, pageable);
 	}
 
+	public VideoInfo.Main retrieveVideo(String videoToken) {
+		return videoService.retrieveVideo(videoToken);
+	}
+
 }
