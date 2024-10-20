@@ -45,6 +45,7 @@ public class VideoInfo {
 	@NoArgsConstructor
 	@Getter
 	public static class Retrieve {
+		private String keyword;
 		private String videoToken;
 		private String youtubeVideoId;
 		private String title;

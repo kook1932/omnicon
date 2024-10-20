@@ -1,13 +1,12 @@
 package com.omnicon.domain.video;
 
-import com.omnicon.domain.common.SearchInfo;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface VideoReader {
 
 	Video getVideo(String id);
 
-	List<VideoInfo.Main> findAllBy(VideoInfo.Retrieve retrieve);
+	Page<VideoInfo.Main> findAllBy(VideoInfo.Retrieve retrieve, Pageable pageable);
 
 }

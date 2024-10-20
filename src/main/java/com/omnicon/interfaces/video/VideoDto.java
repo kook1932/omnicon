@@ -19,11 +19,9 @@ public class VideoDto {
 		private List<String> speakerTokens;
 	}
 
-	@Builder
-	@AllArgsConstructor
-	@NoArgsConstructor
-	@Getter
+	@Data
 	public static class RetrieveRequest {
+		private String keyword;
 		private String videoToken;
 		private String youtubeVideoId;
 		private String title;
@@ -31,10 +29,7 @@ public class VideoDto {
 		private String summary;
 	}
 
-	@Builder
-	@AllArgsConstructor
-	@NoArgsConstructor
-	@Getter
+	@Data
 	public static class Main {
 		private String videoToken;
 		private String youtubeVideoId;
