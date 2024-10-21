@@ -29,6 +29,8 @@ public class Video {
 	private String youtubeVideoId;
 	private String title;
 	private String description;
+
+	@Column(columnDefinition = "text")
 	private String summary;
 
 	private LocalDateTime publishedAt;

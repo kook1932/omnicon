@@ -1,0 +1,19 @@
+### 영상 내용 등록
+POST http://localhost:8080/api/v1/banners
+Content-Type: application/json
+
+{
+  "bannerType": "MAIN",
+  "title": "메인배너1",
+  "imageUrl":  "https://omnicon.com/bannerImage",
+  "linkUrl": "http://localhost:3000",
+  "description": "메인배너배너",
+  "displayOrder": 1,
+  "active":  true,
+  "startDate": "2024-10-21 00:00:00",
+  "endDate": "2024-10-21 23:59:59"
+}
+
+### 배너 조회
+GET http://localhost:8080/api/v1/banners
+Content-Type: application/json

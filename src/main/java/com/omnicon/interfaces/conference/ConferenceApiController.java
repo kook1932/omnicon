@@ -19,8 +19,8 @@ public class ConferenceApiController {
 
 	@PostMapping
 	public CommonResponse<String> createConference(@RequestBody @Valid ConferenceDto.RegisterRequest request) {
-		String hostToken = conferenceFacade.registerConference(conferenceDtoMapper.from(request));
-		return CommonResponse.success(hostToken);
+		String conferenceToken = conferenceFacade.registerConference(conferenceDtoMapper.from(request));
+		return CommonResponse.success(conferenceToken);
 	}
 
 }
