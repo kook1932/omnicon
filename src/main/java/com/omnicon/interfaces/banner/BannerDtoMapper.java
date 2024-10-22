@@ -17,4 +17,6 @@ public interface BannerDtoMapper {
 
 	BannerDto.Main from(BannerInfo.Main bannerInfo);
 
+	BannerInfo.Retrieve from(BannerDto.RetrieveRequest request);
+
 }

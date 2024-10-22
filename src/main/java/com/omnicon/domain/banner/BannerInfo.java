@@ -25,4 +25,13 @@ public class BannerInfo {
 		private LocalDateTime startDate;
 		private LocalDateTime endDate;
 	}
+
+	@Builder
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Getter
+	public static class Retrieve {
+		private LocalDateTime now;
+		private BannerType bannerType;
+	}
 }

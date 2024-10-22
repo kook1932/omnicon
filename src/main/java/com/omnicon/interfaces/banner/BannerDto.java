@@ -39,4 +39,10 @@ public class BannerDto {
 		private LocalDateTime endDate;
 	}
 
+	@Data
+	public static class RetrieveRequest {
+		private LocalDateTime now;
+		private BannerType bannerType;
+	}
+
 }
