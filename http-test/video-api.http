@@ -15,5 +15,5 @@ GET http://localhost:8080/api/v1/videos?keyword=테스트 코드
 Content-Type: application/json
 
 ### 영상 상세 조회
-GET http://localhost:8080/api/v1/videos/
+GET http://localhost:8080/api/v1/videos/0260ce75-bd8f-4a98-8ff8-bf56da42a978
 Content-Type: application/json

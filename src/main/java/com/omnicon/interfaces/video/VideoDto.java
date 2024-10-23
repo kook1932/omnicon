@@ -36,6 +36,7 @@ public class VideoDto {
 		private String title;
 		private String description;
 		private String thumbnailUrl;
+		private String summary;
 	}
 
 }
