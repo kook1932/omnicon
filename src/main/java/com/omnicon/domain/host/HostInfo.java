@@ -15,7 +15,6 @@ public class HostInfo {
 	@NoArgsConstructor
 	@Getter
 	public static class Main {
-		private Long id;
 		private String hostToken;
 		private String name;
 		private String description;

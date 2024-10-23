@@ -12,8 +12,8 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface ConferenceInfoMapper {
 
-	@Mapping(source = "conference.videos", target="videos", ignore=true)
-	@Mapping(source = "conference.host", target="host", ignore=true)
+	@Mapping(source = "videos", target="videos", ignore=true)
+	@Mapping(source = "host", target="host", ignore=true)
 	ConferenceInfo.Main from(Conference conference);
 
 }

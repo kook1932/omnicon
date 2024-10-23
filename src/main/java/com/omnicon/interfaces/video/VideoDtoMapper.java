@@ -6,6 +6,8 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
+import java.util.List;
+
 @Mapper(
 		componentModel = "spring",
 		injectionStrategy = InjectionStrategy.CONSTRUCTOR,
@@ -16,6 +18,8 @@ public interface VideoDtoMapper {
 	VideoCommand.Register from(VideoDto.RegisterRequest request);
 
 	VideoDto.Main from(VideoInfo.Main result);
+
+	List<VideoDto.Main> from(List<VideoInfo.Main> videos);
 
 	VideoInfo.Retrieve from(VideoDto.RetrieveRequest request);
 

@@ -18,4 +18,10 @@ public class ConferenceReaderImpl implements ConferenceReader {
 				.orElseThrow(EntityNotFoundException::new);
 	}
 
+	@Override
+	public Conference getConferenceWithBy(String conferenceToken) {
+		return conferenceRepository.findConferenceWithBy(conferenceToken)
+				.orElseThrow(EntityNotFoundException::new);
+	}
+
 }

@@ -2,10 +2,7 @@ package com.omnicon.domain.conference;
 
 import com.omnicon.domain.host.HostInfo;
 import com.omnicon.domain.video.VideoInfo;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,9 +13,8 @@ public class ConferenceInfo {
 	@Builder
 	@AllArgsConstructor
 	@NoArgsConstructor
-	@Getter
+	@Getter @Setter
 	public static class Main {
-		private Long id;
 		private String conferenceToken;
 		private String name;
 		private String description;

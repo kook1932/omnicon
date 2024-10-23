@@ -4,4 +4,6 @@ public interface ConferenceReader {
 
 	Conference getConferenceBy(String conferenceToken);
 
+	Conference getConferenceWithBy(String conferenceToken);
+
 }
