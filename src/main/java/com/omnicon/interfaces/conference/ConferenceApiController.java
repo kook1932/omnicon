@@ -26,7 +26,7 @@ public class ConferenceApiController {
 	}
 
 	@GetMapping("/{conferenceToken}")
-	public CommonResponse<ConferenceDto.Main> getConference(@PathVariable String conferenceToken) {
+	public CommonResponse<ConferenceDto.Main> getConference(@PathVariable("conferenceToken") String conferenceToken) {
 		ConferenceInfo.Main conference = conferenceFacade.retrieveConference(conferenceToken);
 		ConferenceDto.Main conferenceDto = conferenceDtoMapper.from(conference);
 		conferenceDto.setHost(hostDtoMapper.from(conference.getHost()));
