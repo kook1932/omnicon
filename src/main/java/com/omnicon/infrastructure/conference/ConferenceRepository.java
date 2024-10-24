@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface ConferenceRepository extends JpaRepository<Conference, Long> {
+public interface ConferenceRepository extends JpaRepository<Conference, Long>, ConferenceRepositoryCustom {
 
 	Optional<Conference> findByConferenceToken(String conferenceToken);
 

@@ -28,4 +28,11 @@ public class ConferenceInfo {
 		private List<VideoInfo.Main> videos = new ArrayList<>();
 	}
 
+	@Builder
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Getter @Setter
+	public static class Retrieve {
+		private String keyword;
+	}
 }
